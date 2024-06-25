@@ -1,0 +1,70 @@
+﻿<Window x:Class="BendRectifier.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BendRectifier"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <ToolBar Name="tsStandard">
+                <Button x:Name="mNew" Content="New" />
+                <Button x:Name="mOpen" Content="Open" />
+                <Button x:Name="mSave" Content="Save" />
+                <Button x:Name="mUndo" Content="undo" />
+                <Button x:Name="mRedo" Content="Redo" />
+                <Button Content="Save As"/>
+            </ToolBar>
+            <ToolBar Name="tsPrimitives">
+                <Button Content="Point" />
+                <Button x:Name="mLine" Content="Line" Click="OnShapeClick" Tag="Line"/>
+                <Button x:Name="mPolyLine" Content="Polyline" Tag="PolyLine"/>
+                <Button x:Name="mRectangle" Content="Rectangle" Click="OnShapeClick" Tag="Rectangle"/>
+                <Button x:Name="mCenterRect" Content="CenterRect" Click="OnShapeClick" Tag="CenterRectangle"/>
+            </ToolBar>
+            <ToolBar Name="tsTransform">
+                <Button Content="Move" />
+                <Button Content="Copy" />
+                <Button Content="Rotate"/>
+                <Button Content="Scale"/>
+                <Button Content="Mirror"/>
+                <Separator/>
+                <Button Content="Stretch" />
+                <Button Content="Rotate Control Points" />
+                <Button Content="Scale Control Points" />
+                <Separator/>
+                <Button Content="Delete"/>
+            </ToolBar>
+            <ToolBar Name="toolStrip1">
+                <Button Content="Import Geo" />
+                <Button Content="Import Dxf" />
+            </ToolBar>
+        </StackPanel>
+        <StackPanel x:Name="mPromptingPanel" Grid.Row="1" />
+        <StackPanel x:Name="mInfoPanel" Grid.Row="2" />
+        <local:DrawingSurface Grid.Row="3" x:Name="mPad" Background="Transparent" ClipToBounds="True"/>
+        <StatusBar Grid.Row="4" Name="statusStrip1">
+            <StatusBarItem>
+                <TextBlock Text="Ready" />
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Name="statusCoords" Text="0, 0"/>
+            </StatusBarItem>
+            <StatusBarItem>
+                <Button Content="Angle Mode"/>
+            </StatusBarItem>
+            <StatusBarItem>
+                <Button Content="Snap Mode"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
